@@ -64,7 +64,3 @@ class SaveBook(forms.ModelForm):
             return isbn
         raise forms.ValidationError("ISBN already exists on the Database.")
   
-class EBookForm(forms.ModelForm):
-    class Meta:
-        model = EBook
-        fields = '__all__'
