@@ -6,7 +6,6 @@ from unicodedata import category
 from django import forms
 from numpy import require
 from lsapp import models
-from .models import EBook
 import datetime
 
 class SaveCategory(forms.ModelForm):

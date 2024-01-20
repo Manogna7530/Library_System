@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'lsapp.apps',
+    'lsapp.apps.lsappConfig',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'library_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lib',
+        'NAME': 'ls',
         'USER': 'root',
         'PASSWORD': 'Saimanu@7530',
         'HOST':'localhost',

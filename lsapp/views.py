@@ -5,8 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from lsapp import models, forms
 from django.db.models import Q
-from .models import Books, EBook
-from .forms import EBookForm
+from .models import Books
 
 #view
 

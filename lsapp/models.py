@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
 
-from lsapp.views import books
+
 # Create your models here.
 
 #Category
