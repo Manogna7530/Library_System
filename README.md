@@ -51,7 +51,8 @@ This is a Django project named "library_system" designed to manage a library sys
 To start the development server, run the following command:
 
 ```bash
-python manage.py runserver ```
+python manage.py runserver
+```
 
 ## Dependencies
 Django: https://www.djangoproject.com/
