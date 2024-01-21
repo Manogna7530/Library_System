@@ -28,7 +28,6 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Date Added</th>
-                                <th class="text-center">Category</th>
                                 <th class="text-center">ISBN</th>
                                 <th class="text-center">Title</th>
                                 <th class="text-center">Status</th>
@@ -40,12 +39,6 @@
                             <tr>
                                 <td class="text-center">{{ forloop.counter }}</td>
                                 <td>{{ book.date_added|date:"Y-m-d h:i A"}}</td>
-                                <td>
-                                    <div class="lh-1">
-                                        {% comment %} <div>{{ book.sub_category.category.name}}</div> {% endcomment %}
-                                        <div>{{ book.category.name}}</div>
-                                    </div>
-                                </td>
                                 <td>{{ book.isbn}}</td>
                                 <td>{{ book.title }}</td>
                                 <td class="text-center">

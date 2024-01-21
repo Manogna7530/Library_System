@@ -15,23 +15,6 @@
             <input type="text" id="isbn" name="isbn" class="form-control form-control-sm rounded-0" value="{{book.isbn}}" required>
         </div>
         <div class="mb-3">
-            <label for="category" class="control-label">Category</label>
-            <select type="text" id="category" name="category" class="form-select form-select-sm rounded-0" required>
-                {% if not book.category %}
-                    <option  disabled selected></option>
-                {% else %}
-                    <option disabled>Male</option>
-                {% endif %}
-                {% for category in categories %}
-                {% if  book.category.id == category.id %}
-                    <option value="{{category.id}}" selected>{{category.name}}</option>
-                {% else %}
-                    <option value="{{category.id}}">{{category.name}}</option>
-                {% endif %}
-                {% endfor %}
-            </select>
-        </div>
-        <div class="mb-3">
             <label for="title" class="control-label">Title</label>
             <input type="text" id="title" name="title" class="form-control form-control-sm rounded-0" value="{{book.title}}" required>
         </div>
@@ -70,14 +53,6 @@
 </div>
 <script>
     $(function() {
-        $('#uni_modal').on('shown.bs.modal', function() {
-            $('#category').select2({
-                width: "100%",
-                placeholder: "Please Select Category Here",
-                dropdownParent: $('#uni_modal'),
-                selectionCssClass: "form-control form-control-sm rounded-0"
-            })
-        })
         $('#book-form').submit(function(e) {
             e.preventDefault();
             var _this = $(this)

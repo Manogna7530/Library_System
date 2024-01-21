@@ -30,87 +30,86 @@ def home(request):
     context = context_data(request)
     context['page'] = 'home'
     context['page_title'] = 'Home'
-    context['categories'] = models.Category.objects.filter(delete_flag = 0, status = 1).all().count()
     context['books'] = models.Books.objects.filter(delete_flag = 0, status = 1).all().count()
 
     return render(request, 'home.html', context)
 
-#category
+# #category
 
-def category(request):
-    context = context_data(request)
-    context['page'] = 'category'
-    context['page_title'] = "Category List"
-    context['category'] = models.Category.objects.filter(delete_flag = 0).all()
-    return render(request, 'category.html', context)
-
-
-def save_category(request):
-    resp = { 'status': 'failed', 'msg' : '' }
-    if request.method == 'POST':
-        post = request.POST
-        if not post['id'] == '':
-            category = models.Category.objects.get(id = post['id'])
-            form = forms.SaveCategory(request.POST, instance=category)
-        else:
-            form = forms.SaveCategory(request.POST) 
-
-        if form.is_valid():
-            form.save()
-            if post['id'] == '':
-                messages.success(request, "Category has been saved successfully.")
-            else:
-                messages.success(request, "Category has been updated successfully.")
-            resp['status'] = 'success'
-        else:
-            for field in form:
-                for error in field.errors:
-                    if not resp['msg'] == '':
-                        resp['msg'] += str('<br/>')
-                    resp['msg'] += str(f'[{field.name}] {error}')
-    else:
-         resp['msg'] = "There's no data sent on the request"
-
-    return HttpResponse(json.dumps(resp), content_type="application/json")
+# def category(request):
+#     context = context_data(request)
+#     context['page'] = 'category'
+#     context['page_title'] = "Category List"
+#     context['category'] = models.Category.objects.filter(delete_flag = 0).all()
+#     return render(request, 'category.html', context)
 
 
-def view_category(request, pk = None):
-    context = context_data(request)
-    context['page'] = 'view_category'
-    context['page_title'] = 'View Category'
-    if pk is None:
-        context['category'] = {}
-    else:
-        context['category'] = models.Category.objects.get(id=pk)
+# def save_category(request):
+#     resp = { 'status': 'failed', 'msg' : '' }
+#     if request.method == 'POST':
+#         post = request.POST
+#         if not post['id'] == '':
+#             category = models.Category.objects.get(id = post['id'])
+#             form = forms.SaveCategory(request.POST, instance=category)
+#         else:
+#             form = forms.SaveCategory(request.POST) 
+
+#         if form.is_valid():
+#             form.save()
+#             if post['id'] == '':
+#                 messages.success(request, "Category has been saved successfully.")
+#             else:
+#                 messages.success(request, "Category has been updated successfully.")
+#             resp['status'] = 'success'
+#         else:
+#             for field in form:
+#                 for error in field.errors:
+#                     if not resp['msg'] == '':
+#                         resp['msg'] += str('<br/>')
+#                     resp['msg'] += str(f'[{field.name}] {error}')
+#     else:
+#          resp['msg'] = "There's no data sent on the request"
+
+#     return HttpResponse(json.dumps(resp), content_type="application/json")
+
+
+# def view_category(request, pk = None):
+#     context = context_data(request)
+#     context['page'] = 'view_category'
+#     context['page_title'] = 'View Category'
+#     if pk is None:
+#         context['category'] = {}
+#     else:
+#         context['category'] = models.Category.objects.get(id=pk)
     
-    return render(request, 'view_category.html', context)
+#     return render(request, 'view_category.html', context)
 
 
-def manage_category(request, pk = None):
-    context = context_data(request)
-    context['page'] = 'manage_category'
-    context['page_title'] = 'Manage Category'
-    if pk is None:
-        context['category'] = {}
-    else:
-        context['category'] = models.Category.objects.get(id=pk)
+# def manage_category(request, pk = None):
+#     context = context_data(request)
+#     context['page'] = 'manage_category'
+#     context['page_title'] = 'Manage Category'
+#     if pk is None:
+#         context['category'] = {}
+#     else:
+#         context['category'] = models.Category.objects.get(id=pk)
     
-    return render(request, 'manage_category.html', context)
+#     return render(request, 'manage_category.html', context)
 
 
-def delete_category(request, pk = None):
-    resp = { 'status' : 'failed', 'msg':''}
-    if pk is None:
-        resp['msg'] = 'Category ID is invalid'
-    else:
-        try:
-            models.Category.objects.filter(pk = pk).update(delete_flag = 1)
-            messages.success(request, "Category has been deleted successfully.")
-            resp['status'] = 'success'
-        except:
-            resp['msg'] = "Deleting Category Failed"
+# def delete_category(request, pk = None):
+#     resp = { 'status' : 'failed', 'msg':''}
+#     if pk is None:
+#         resp['msg'] = 'Category ID is invalid'
+#     else:
+#         try:
+#             models.Category.objects.filter(pk = pk).update(delete_flag = 1)
+#             messages.success(request, "Category has been deleted successfully.")
+#             resp['status'] = 'success'
+#         except:
+#             resp['msg'] = "Deleting Category Failed"
 
-    return HttpResponse(json.dumps(resp), content_type="application/json")
+#     return HttpResponse(json.dumps(resp), content_type="application/json")
 
 #books
 
@@ -171,7 +170,6 @@ def manage_book(request, pk = None):
         context['book'] = {}
     else:
         context['book'] = models.Books.objects.get(id=pk)
-    context['categories'] = models.Category.objects.filter(delete_flag = 0, status = 1).all()
 
     return render(request, 'manage_book.html', context)
 
